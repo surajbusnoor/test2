@@ -1,0 +1,58 @@
+{% extends 'Layout.html' %}
+
+
+{% block content %}
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for row in data %}
+    <tr>
+        <td>{{row.id}}</td>
+        <td>{{row.usr_name}}</td>
+        <td>{{row.usr_email}}</td>
+        <td>{{row.usr_address}}</td>
+        <td>
+            <span><a class="btn btn-info btn-xs" href="/student/view/{{ row.id }}">VIEW</a> </span>
+            <span><a class="btn btn-primary btn-xs" href="/student/update/{{ row.id }}">Update</a> </span>
+            <span><a class="btn btn-warning btn-xs delete" href="/student/delete/{{ row.id }}">Delete</a> </span>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+  </table>
+
+<script>
+
+    $(document).ready(function(){
+
+        $('.delete').click(function(){
+
+            if(confirm('Are you sure to delete this record ?')){
+                return true;
+
+            }
+            else {
+                return false;
+            }
+
+
+        });
+
+    });
+
+</script>
+
+
+{% endblock %}
